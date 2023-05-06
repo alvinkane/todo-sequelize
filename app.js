@@ -5,12 +5,16 @@ const bcrypt = require("bcryptjs");
 const app = express();
 const port = 3000;
 
+const routes = require("./routes");
+
 app.engine("hbs", exhbs({ defaultLayout: "main", extname: "hbs" }));
 app.set("view engine", "hbs");
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
+
+app.use(routes);
 
 app.get("/", (req, res) => {
   res.send("hi");
