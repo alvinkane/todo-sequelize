@@ -16,7 +16,7 @@ module.exports = (app) => {
           // 檢查email是否存在
           const user = await User.findOne({ where: { email } });
           if (!user) {
-            return done(null, fulse, {
+            return done(null, false, {
               message: "This email is not registered",
             });
           }

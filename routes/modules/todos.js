@@ -5,6 +5,11 @@ const db = require("../../models");
 const Todo = db.Todo;
 const User = db.User;
 
+// 前往new頁面
+
+// 建立資料
+
+// 瀏覽detail頁面
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -14,5 +19,11 @@ router.get("/:id", async (req, res) => {
     res.send(error);
   }
 });
+
+// 瀏覽edit頁面
+
+// edit資料
+
+// delete資料
 
 module.exports = router;
