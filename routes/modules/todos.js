@@ -44,8 +44,6 @@ router.get("/:id/edit", async (req, res) => {
   const id = req.params.id;
   try {
     const todo = await Todo.findOne({ where: { id, UserId } });
-    console.log(todo.get());
-    console.log(todo.toJSON());
     res.render("edit", { todo: todo.toJSON() });
   } catch (err) {
     res.send(err);
@@ -53,6 +51,22 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 // edit資料
+router.put("/:id", async (req, res) => {
+  const UserId = req.user.id;
+  const id = req.params.id;
+  const { name, isDone } = req.body;
+  console.log(req.body);
+  try {
+    const todo = await Todo.findOne({ where: { id, UserId } });
+    todo.name = name;
+    todo.isDone = isDone === "on";
+    console.log(isDone === "on");
+    await todo.save();
+    res.redirect(`/todos/${id}`);
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 // delete資料
 
