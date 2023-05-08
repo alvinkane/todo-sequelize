@@ -55,7 +55,6 @@ router.put("/:id", async (req, res) => {
   const UserId = req.user.id;
   const id = req.params.id;
   const { name, isDone } = req.body;
-  console.log(req.body);
   try {
     const todo = await Todo.findOne({ where: { id, UserId } });
     todo.name = name;
@@ -69,5 +68,16 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete資料
+router.delete("/:id", async (req, res) => {
+  const UserId = req.user.id;
+  const id = req.params.id;
+  try {
+    const todo = await Todo.findOne({ where: { id, UserId } });
+    await todo.destroy();
+    res.redirect("/");
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 module.exports = router;
