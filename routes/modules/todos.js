@@ -28,9 +28,10 @@ router.post("/", async (req, res) => {
 
 // 瀏覽detail頁面
 router.get("/:id", async (req, res) => {
+  const UserId = req.user.id;
   const id = req.params.id;
   try {
-    const todo = await Todo.findByPk(id);
+    const todo = await Todo.findOne({ where: { id, UserId } });
     res.render("detail", { todo: todo.toJSON() });
   } catch (error) {
     res.send(error);
