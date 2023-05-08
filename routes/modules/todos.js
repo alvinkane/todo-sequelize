@@ -11,6 +11,20 @@ router.get("/new", (req, res) => {
 });
 
 // 建立資料
+router.post("/", async (req, res) => {
+  // 取出資料
+  const name = req.body.name;
+  const UserId = req.user.id;
+  // 確認有無內容
+  if (!name) res.redirect("/todos/new");
+  try {
+    // 建立資料
+    await Todo.create({ name, UserId });
+    res.redirect("/");
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 // 瀏覽detail頁面
 router.get("/:id", async (req, res) => {
