@@ -6,6 +6,9 @@ const Todo = db.Todo;
 const User = db.User;
 
 // 前往new頁面
+router.get("/new", (req, res) => {
+  res.render("new");
+});
 
 // 建立資料
 
