@@ -34,10 +34,17 @@
    FACEBOOK_ID=<應用程式編號>
    FACEBOOK_SECRET=<應用程式密鑰>
    FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
-   SESSION_SECRET=ThisSecretIsForTodoList
+   SESSION_SECRET=<自行定義>
    PORT=3000
    ```
-6. 匯入種子檔案
+6. 打開MySQL workbench
+   建立database: todo_sequelize
+   ```
+   drop database if exists todo_sequelize;
+   create database todo_sequelize;
+   use todo_sequelize;
+   ```
+7. 匯入種子檔案
    ```
    npx sequelize db:migrate
    npx sequelize db:seed:all
