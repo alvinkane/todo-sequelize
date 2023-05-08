@@ -16,18 +16,22 @@ module.exports = (app) => {
           // 檢查email是否存在
           const user = await User.findOne({ where: { email } });
           if (!user) {
-            return done(null, false, {
-              message: "This email is not registered",
-            });
+            return done(
+              null,
+              false,
+              req.flash("warning_msg", "This email is not registered!")
+            );
           }
           // 檢查密碼是否正確
           const isMatch = bcrypt.compareSync(password, user.password);
           if (!isMatch) {
-            return done(null, false, {
-              message: "email or password incorrect!",
-            });
+            return done(
+              null,
+              false,
+              req.flash("warning_msg", "email or password incorrect!")
+            );
           }
-          return done(null, user, { message: "login successed!" });
+          return done(null, user, req.flash("success_msg", "login success!"));
         } catch (error) {
           done(error, false);
         }
