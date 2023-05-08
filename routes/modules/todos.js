@@ -39,6 +39,18 @@ router.get("/:id", async (req, res) => {
 });
 
 // 瀏覽edit頁面
+router.get("/:id/edit", async (req, res) => {
+  const UserId = req.user.id;
+  const id = req.params.id;
+  try {
+    const todo = await Todo.findOne({ where: { id, UserId } });
+    console.log(todo.get());
+    console.log(todo.toJSON());
+    res.render("edit", { todo: todo.toJSON() });
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 // edit資料
 

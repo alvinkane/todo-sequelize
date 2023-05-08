@@ -1,0 +1,19 @@
+<form
+  action="/todos/{{todo.id}}?_method=put"
+  method="POST"
+  style="display: inline"
+>
+  <div class="input-group bg-light">
+    <div class="input-group-text">
+      <input type="checkbox" class="form-check-input" name="done" {{#if todo.isDone}} checked {{/if}}/>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="name"
+      name="name"
+      value="{{todo.name}}"
+    />
+    <button class="btn btn-success" type="submit">Save</button>
+  </div>
+</form>
