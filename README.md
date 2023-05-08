@@ -29,26 +29,27 @@
    npm install
    ```
 4. 安裝 nodemon 套件(若有可省略)
-5. 在專案內創造一個 env 檔案，可直接複製.env.example檔案，並將SKIP修改為自己的
+5. 在專案內創造一個 env 檔案，將SKIP修改為自己的
    ```
-   MONGODB_ENV=mongodb+srv://<username>:<password>@<cluster>.pk4dwnp.mongodb.net/restaurant-list?retryWrites=true&w=majority
    FACEBOOK_ID=<應用程式編號>
    FACEBOOK_SECRET=<應用程式密鑰>
+   FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+   SESSION_SECRET=ThisSecretIsForTodoList
+   PORT=3000
    ```
 6. 匯入種子檔案
    ```
+   npx sequelize db:migrate
    npx sequelize db:seed:all
    ```
 8. 執行專案
    ```
    npm run dev
    ```
-9. 出現 "This is listening on http://localhost:3000" 'mongodb connected'代表成功
+9. 出現 "This is listening on http://localhost:3000"代表成功
 10. 開啟任一瀏覽器輸入 This is listening on http://localhost:3000
 
 ## 種子資料帳密
-
-### 第一位使用者 
     email: root@example.com
     password: 12345678
 
